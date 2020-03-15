@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -23,7 +22,7 @@ func init() {
 
 	if err != nil {
 		log.Fatal(err)
-		os.Exit(-1)
+		panic(err)
 	}
 
 	// Check the connection
