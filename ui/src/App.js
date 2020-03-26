@@ -1,14 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import Welcome from './components/income'
+import { Qrcode } from './components/qrGenerator'
 import './App.css';
-
+import { LectorQr } from './components/qrReader';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <Welcome/>
-      </header>
+    <div>
+    <Qrcode/>
+    <LectorQr/>
     </div>
   );
 }
