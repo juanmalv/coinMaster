@@ -4,7 +4,7 @@ import QRCode from 'qrcode'
 export class Qrcode extends Component {
 
 generateQR() {
-     let str = 'https://medium.com/@mshalam04/integrating-qr-codes-with-react-874da3e5d98e'
+     let str = 'Aparezco en lA PORTADA!!!'
      QRCode.toCanvas(document.getElementById('canvas'), str,function(error) {
           if (error) console.error(error)
           console.log('success!')

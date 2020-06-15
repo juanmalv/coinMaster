@@ -1,17 +1,18 @@
-package controller
+package webService
 
 import (
+	"github.com/juanmalv/coinMaster/api/src/api/constants"
 	"log"
 	"net/http"
 	"time"
 
-	"github.com/juanmalv/coinMaster/api/src/database"
-	"github.com/juanmalv/coinMaster/api/src/models"
+	"github.com/juanmalv/coinMaster/api/src/api/database"
+	"github.com/juanmalv/coinMaster/api/src/api/models"
 
 	"github.com/gin-gonic/gin"
 )
 
-var incomeCollection = database.Client.Database("coinmaster").Collection("income")
+var incomeCollection = database.Client.Database(constants.DBName).Collection(constants.IncomeOperation)
 
 //NewIncome creates a new income id with details
 func NewIncome(c *gin.Context) {
@@ -19,6 +20,13 @@ func NewIncome(c *gin.Context) {
 
 	if err := c.BindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Request is invalid. Please check the data and try again"})
+		return
+	}
+
+	err := req.ValidateIncomeRequest(c)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
 

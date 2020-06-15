@@ -1,8 +1,7 @@
-package routing
+package webService
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/juanmalv/coinMaster/api/src/controller"
 )
 
 var (
@@ -12,8 +11,8 @@ var (
 
 // Register API routes
 func Register() {
-	Router.GET("/ping", controller.Ping)
-	Router.POST("/income", controller.NewIncome)
+	Router.GET("/ping", Ping)
+	Router.POST("/income", NewIncome)
 }
 
 // Configure the routing behavior
